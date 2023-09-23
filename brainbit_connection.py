@@ -1,4 +1,3 @@
-import flask
 import neurosdk
 from neurosdk.scanner import Scanner
 from neurosdk.sensor import Sensor
