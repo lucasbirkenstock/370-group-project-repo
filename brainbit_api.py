@@ -9,4 +9,12 @@ user="postgres",
 password="password"
 )
 
+theCursor = conn.cursor() 
+theCursor.execute("INSERT INTO example (stupid) VALUES(5)")
+theCursor.execute("SELECT * FROM example")
+theCursor.fetchone() 
+conn.commit()
+theCursor.close()
+conn.close()
+
 
