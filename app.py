@@ -1,10 +1,10 @@
 from flask import Flask,render_template,request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
-import jwt
+#import jwt
 
 import sys
 import datetime
-import bcrypt
+#import bcrypt
 import traceback
 
 from tools.eeg import get_head_band_sensor_object
@@ -12,7 +12,7 @@ from tools.eeg import get_head_band_sensor_object
 
 from db_con import get_db_instance, get_db
 
-from tools.token_required import token_required
+#from tools.token_required import token_required
 
 #used if you want to store your secrets in the aws valut
 #from tools.get_aws_secrets import get_secrets
@@ -47,7 +47,7 @@ def index():
 
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
-@token_required
+#@token_required
 def exec_secure_proc(proc_name):
     logger.debug(f"Secure Call to {proc_name}")
 
