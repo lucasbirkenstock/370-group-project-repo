@@ -1,0 +1,14 @@
+Template
+***********Interview #***********
+Interviewer: Full Name
+Interviewee: Full Name
+Questions:
+
+*********************************
+
+***********Interview 1***********
+Interviewer: Michael Pettric
+Interviewee: Tyler Chick
+Questions:
+
+*********************************
