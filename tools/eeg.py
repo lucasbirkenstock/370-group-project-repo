@@ -40,3 +40,5 @@ gl_scanner.start()
 def get_head_band_sensor_object():
     return gl_sensor
 
+print(gl_sensor.commands)
+
