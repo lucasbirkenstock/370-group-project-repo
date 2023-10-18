@@ -29,6 +29,10 @@ def sensorFound(scanner, sensors):
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
         gl_scanner.stop()
+        #Call emotional information functions here
+        #on brainbit_emotion_received
+        #on stop, make call to attention level
+        
         del gl_scanner
 
 gl_scanner.sensorsChanged = sensorFound
