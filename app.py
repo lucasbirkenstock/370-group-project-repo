@@ -17,6 +17,8 @@ from tools.token_required import token_required
 #used if you want to store your secrets in the aws valut
 #from tools.get_aws_secrets import get_secrets
 
+#  This code sets up a web application with specific API endpoints for executing functions
+
 from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"

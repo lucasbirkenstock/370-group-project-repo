@@ -6,6 +6,8 @@ from neurosdk.cmn_types import *
 from tools.logging import logger   
 
 
+# This code sets up a sensor scanner, connects to discovered sensors, and defines callback functions to handle sensor events and data.
+
 #doing all this a the "module level" in "Demo" server mode it will work fine :)
 
 def on_sensor_state_changed(sensor, state):
