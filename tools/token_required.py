@@ -1,4 +1,4 @@
-import jwt
+#import jwt
 from functools import wraps
 from flask import request, redirect, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json

@@ -23,7 +23,6 @@ logger.debug("Sensor Found Callback")
 
 # Create emotionalmath object for calculating emotions from video
 # might remove this line later and replace with some sort of call to lib_emotions_pipeline
-em = emotional_math()
 
 
 def sensorFound(scanner, sensors):
@@ -40,7 +39,7 @@ def sensorFound(scanner, sensors):
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
-        lib_emotions_pipeline.main
+        lib_emotions_pipeline.main()
         
         
         del gl_scanner
@@ -54,5 +53,5 @@ gl_scanner.start()
 def get_head_band_sensor_object():
     return gl_sensor
 
-print(gl_sensor.commands)
+#print(gl_sensor.commands)
 
