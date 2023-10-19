@@ -3,7 +3,8 @@ from neurosdk.sensor import Sensor
 from neurosdk.brainbit_sensor import BrainBitSensor
 from neurosdk.cmn_types import *
 
-from tools.logging import logger   
+from tools.logging import logger  
+from em_st_artifacts import emotional_math 
 
 
 #doing all this a the "module level" in "Demo" server mode it will work fine :)
@@ -18,6 +19,12 @@ logger.debug("Create Headband Scanner")
 gl_scanner = Scanner([SensorFamily.SensorLEBrainBit])
 gl_sensor = None
 logger.debug("Sensor Found Callback")
+
+# Create emotionalmath object for calculating emotions from video
+# might remove this line later and replace with some sort of call to lib_emotions_pipeline
+em = emotional_math()
+
+
 def sensorFound(scanner, sensors):
     global gl_scanner
     global gl_sensor
@@ -32,6 +39,7 @@ def sensorFound(scanner, sensors):
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
+        
         
         del gl_scanner
 
