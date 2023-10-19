@@ -1,19 +1,42 @@
-from em_st_artifacts import emotional_math
-from em_st_artifacts.emotional_math import EmotionalMath
-from em_st_artifacts.utils.lib_settings import (ArtifactDetectSetting, MathLibSetting, MentalAndSpectralSetting, ShortArtifactDetectSetting, )
+import math
+
 from em_st_artifacts.utils.support_classes import RawChannelsArray, RawChannels
 
-def pipeline():
-    calibration_length = 0
+from em_st_artifacts.emotional_math import EmotionalMath
+
+from em_st_artifacts.utils.lib_settings import MathLibSetting, ArtifactDetectSetting, ShortArtifactDetectSetting, \
+    MentalAndSpectralSetting
+
+current_sin_step = 0
+
+
+def get_sin_wave_sample(sample_rate: int, hz: int, step: int):
+    return 50 * math.sin(hz * step * (2 * math.pi / sample_rate))
+
+
+def get_sin(sample_count: int):
+    result = []
+
+    global current_sin_step
+
+    for _ in range(sample_count):
+        result.append(get_sin_wave_sample(250, 10, current_sin_step))
+        current_sin_step += 1
+
+    return result
+
+
+def main():
+    calibration_length = 8
     nwins_skip_after_artifact = 10
 
     mls = MathLibSetting(sampling_rate=250,
-    process_win_freq=25,
-    fft_window=1000,
-    n_first_sec_skipped=4,
-    bipolar_mode=False,
-    channels_number=4,
-    channel_for_analysis=3)
+                         process_win_freq=25,
+                         fft_window=1000,
+                         n_first_sec_skipped=4,
+                         bipolar_mode=True,
+                         channels_number=4,
+                         channel_for_analysis=3)
 
     ads = ArtifactDetectSetting(hanning_win_spectrum=True, num_wins_for_quality_avg=125)
 
@@ -30,8 +53,10 @@ def pipeline():
 
     size = 1500
 
+
     # This is basically the pipeline, because it runs indefinitely 
     while True:
+
         #Raw data list
         raw_channels_list = []
 
@@ -49,7 +74,6 @@ def pipeline():
         raw_spect_vals = emotions.read_raw_spectral_vals()
         percents = emotions.read_spectral_data_percents_arr()
 
-
         # I believe is_both_sides artifacted indicates signal corruption. Not entirely sure.
         if emotions.is_both_sides_artifacted():
             print()
@@ -60,15 +84,14 @@ def pipeline():
                                               mind_data.inst_attention,
                                               mind_data.inst_relaxation))
 
-
+        # All vals
         for i in range(emotions.read_mental_data_arr_size()):
             print("{}: {} {} {} {}".format(i,
                                            mind_data_list[i].rel_attention,
                                            mind_data_list[i].rel_relaxation,
                                            mind_data_list[i].inst_attention,
                                            mind_data_list[i].inst_relaxation))
-
-        # Raw spectrum values
+        
         print("Raw Spect Vals: {} {}".format(raw_spect_vals.alpha, raw_spect_vals.beta))
 
         for i in range(emotions.read_spectral_data_percents_arr_size()):
@@ -80,5 +103,5 @@ def pipeline():
                                               percents[i].theta))
 
 
-pipeline()
-
+if __name__ == '__main__':
+    main()
