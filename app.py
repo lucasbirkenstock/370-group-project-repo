@@ -1,10 +1,10 @@
 from flask import Flask,render_template,request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
-import jwt
+#import jwt
 
 import sys
 import datetime
-import bcrypt
+#import bcrypt
 import traceback
 
 from tools.eeg import get_head_band_sensor_object

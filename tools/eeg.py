@@ -6,6 +6,7 @@ from neurosdk.cmn_types import *
 from tools.logging import logger  
 from em_st_artifacts import emotional_math 
 
+from tools import lib_emotions_pipeline
 
 #doing all this a the "module level" in "Demo" server mode it will work fine :)
 
@@ -39,6 +40,7 @@ def sensorFound(scanner, sensors):
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
+        lib_emotions_pipeline.main
         
         
         del gl_scanner
