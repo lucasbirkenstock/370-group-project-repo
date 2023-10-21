@@ -7,7 +7,7 @@ import datetime
 #import bcrypt
 import traceback
 
-from tools.eeg import get_head_band_sensor_object
+#from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -20,6 +20,7 @@ from db_con import get_db_instance, get_db
 #  This code sets up a web application with specific API endpoints for executing functions
 
 from tools.logging import logger
+from flask_socketio import SocketIO
 
 ERROR_MSG = "Ooops.. Didn't work!"
 
@@ -29,6 +30,24 @@ app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@socketio.on('message')
+def handle_message(data):
+    print('received message: ' + data)
+
+@socketio.on('connect')
+def handle_message():
+    print('******************** \nWebsocket connected on servers end \n*****************')
+
+@socketio.on('my event')
+def handle_message(data):
+    print("*********************")
+    print("server has been notified that websocket is connected on clients end")
+    print(data)
+    print("*********************")
 #g is flask for a global var storage 
 def init_new_env():
     #To connect to DB
@@ -95,5 +114,5 @@ def exec_proc(proc_name):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    socketio.run(app,host='0.0.0.0', port=80)
 
