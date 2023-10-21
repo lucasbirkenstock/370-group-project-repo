@@ -7,7 +7,7 @@ import datetime
 #import bcrypt
 import traceback
 
-#from tools.eeg import get_head_band_sensor_object
+from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -41,6 +41,9 @@ def handle_message(data):
 @socketio.on('connect')
 def handle_message():
     print('******************** \nWebsocket connected on servers end \n*****************')
+ #Call This function and pass in the new video path, when it is time to change the clients video.   
+def changeVideo(videoPath):
+        socketio.emit('change_video',videoPath)
 
 @socketio.on('my event')
 def handle_message(data):
