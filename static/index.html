@@ -26,6 +26,7 @@
 	</br></br></br></br></br></br>
 	<script>
 		function play_start(){
+			
 			$.post("/open_api/play_movie", { "data":"somedata", "any":"data"},
 				function(data, textStatus) {
 					//this gets called when browser receives response from server
@@ -47,11 +48,14 @@
 				Your browser does not support the video tag.
 		</video>
 	</div>
+	<button id="changeVideoButton">Change Video</button>
 
 	<script>
+		/*
 		video.addEventListener("play", (event) => {
 			play_start();
 		});
+		*/
 		// video.addEventListener("stop", (event) =>{
 		// 	play_stop();
 		// });

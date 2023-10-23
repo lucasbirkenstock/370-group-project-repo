@@ -1,7 +1,7 @@
 var socket = io();
 
 socket.on("connect", function () {
-  socket.emit("my event", { data: "I'm connected!" });
+  socket.emit("client-connection-ack");
 });
 
 socket.on("change_video", function (newVideoPath) {
@@ -9,4 +9,14 @@ socket.on("change_video", function (newVideoPath) {
   videoPlayer.src = newVideoPath;
   videoPlayer.load();
   videoPlayer.play();
+});
+
+document
+  .getElementById("changeVideoButton")
+  .addEventListener("click", function () {
+    socket.emit("change_video");
+  });
+
+video.addEventListener("play", (event) => {
+  socket.emit("start_headband");
 });

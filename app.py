@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, redirect, url_for, g
+from flask import Flask,render_template,request, redirect, url_for, g, session
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 #import jwt
 
@@ -7,7 +7,7 @@ import datetime
 #import bcrypt
 import traceback
 
-from tools.eeg import get_head_band_sensor_object
+#from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -29,28 +29,22 @@ ERROR_MSG = "Ooops.. Didn't work!"
 app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
+app.secret_key = 'BAD_SECRET_KEY'
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
-
-@socketio.on('message')
-def handle_message(data):
-    print('received message: ' + data)
+socketio = SocketIO(app, manage_session=False)
 
 @socketio.on('connect')
 def handle_message():
-    print('******************** \nWebsocket connected on servers end \n*****************')
+    print('***\nWebsocket connected on servers end \n***')
  #Call This function and pass in the new video path, when it is time to change the clients video.   
-def changeVideo(videoPath):
-        socketio.emit('change_video',videoPath)
+def changeVideo(videoPath,sessionID):
+        socketio.emit('change_video',videoPath,room=sessionID)
 
-@socketio.on('my event')
-def handle_message(data):
-    print("*********************")
-    print("server has been notified that websocket is connected on clients end")
-    print(data)
-    print("*********************")
+@socketio.on('client-connection-ack')
+def handle_message():
+    print("***\nserver has been notified that websocket is connected on clients end\n***")
 #g is flask for a global var storage 
 def init_new_env():
     #To connect to DB
@@ -63,17 +57,15 @@ def init_new_env():
     #g.secrets = get_secrets()
     #g.sms_client = get_sms_client()
 
-#This gets executed by default by the browser if no page is specified
-#So.. we redirect to the endpoint we want to load the base page
-@app.route('/') #endpoint
+@app.route('/') 
 def index():
     return redirect('/static/index.html')
 
 
-@app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
+@socketio.on("start_headband")
 #@token_required
-def exec_secure_proc(proc_name):
-    logger.debug(f"Secure Call to {proc_name}")
+def exec_secure_proc():
+    logger.debug(f"Secure Call to change_vidoe")
 
     #setup the env
     init_new_env()
