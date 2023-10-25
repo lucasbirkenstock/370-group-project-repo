@@ -3,10 +3,10 @@ from neurosdk.sensor import Sensor
 from neurosdk.brainbit_sensor import BrainBitSensor
 from neurosdk.cmn_types import *
 
-from tools.logging import logger  
+from tools.logging import logger
 from em_st_artifacts import emotional_math 
 
-from tools import lib_emotions_pipeline
+import lib_emotions_pipeline
 
 #doing all this a the "module level" in "Demo" server mode it will work fine :)
 
@@ -28,6 +28,10 @@ logger.debug("Sensor Found Callback")
 def sensorFound(scanner, sensors):
     global gl_scanner
     global gl_sensor
+
+    print(gl_sensor.commands)
+
+
     for i in range(len(sensors)):
         logger.debug('Sensor %s' % sensors[i])
         logger.debug('Connecting to sensor')
@@ -36,6 +40,7 @@ def sensorFound(scanner, sensors):
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
         gl_scanner.stop()
+
 
         
         #Call emotional information functions here
