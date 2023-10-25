@@ -6,7 +6,7 @@ from neurosdk.cmn_types import *
 from tools.logging import logger
 from em_st_artifacts import emotional_math 
 
-import lib_emotions_pipeline
+from .lib_emotions_pipeline import make_pipeline_object
 
 #doing all this a the "module level" in "Demo" server mode it will work fine :)
 
@@ -29,7 +29,6 @@ def sensorFound(scanner, sensors):
     global gl_scanner
     global gl_sensor
 
-    print(gl_sensor.commands)
 
 
     for i in range(len(sensors)):
@@ -41,6 +40,7 @@ def sensorFound(scanner, sensors):
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
         gl_scanner.stop()
 
+        #print(gl_sensor.commands)
 
         
         #Call emotional information functions here
