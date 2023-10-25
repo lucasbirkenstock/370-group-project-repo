@@ -39,7 +39,7 @@ def sensorFound(scanner, sensors):
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
-        lib_emotions_pipeline.main()
+        thePipeline = lib_emotions_pipeline.make_pipeline_object()
         
         
         del gl_scanner
