@@ -36,10 +36,17 @@ def sensorFound(scanner, sensors):
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
         gl_scanner.stop()
+
+        
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
         thePipeline = lib_emotions_pipeline.make_pipeline_object()
+        data = []
+        data = on_brain_bit_signal_data_received
+        thePipeline.push_data(data)
+        thePipeline.process_data_arr()
+
         
         
         del gl_scanner
