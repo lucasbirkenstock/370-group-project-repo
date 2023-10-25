@@ -46,9 +46,9 @@ def sensorFound(scanner, sensors):
         #Call emotional information functions here
         #on brainbit_emotion_received
         #on stop, make call to attention level
-        thePipeline = lib_emotions_pipeline.make_pipeline_object()
+        thePipeline = make_pipeline_object()
         data = []
-        data = on_brain_bit_signal_data_received
+        data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
         thePipeline.push_data(data)
         thePipeline.process_data_arr()
 
