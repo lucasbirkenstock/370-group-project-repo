@@ -38,6 +38,7 @@ def sensorFound(scanner, sensors):
         gl_sensor.sensorStateChanged = on_sensor_state_changed
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
+        
         gl_scanner.stop()
 
         #print(gl_sensor.commands)
@@ -51,7 +52,16 @@ def sensorFound(scanner, sensors):
         data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
         thePipeline.push_data(data)
         thePipeline.process_data_arr()
+        
+        mind_data = thePipeline.read_average_mental_data()
+        mind_data_list = thePipeline.read_mental_data_arr()
 
+        for i in range(thePipeline.read_mental_data_arr_size()):
+             print("{}: {} {} {} {}".format(i,
+                mind_data_list[i].rel_attention,
+                mind_data_list[i].rel_relaxation,
+                mind_data_list[i].inst_attention,
+                mind_data_list[i].inst_relaxation))
         
         
         del gl_scanner
