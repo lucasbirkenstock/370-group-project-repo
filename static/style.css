@@ -4,6 +4,7 @@
     text-decoration: none;
     overflow:hidden;
     background-color: white;
+    
 }
 
 .logo{
@@ -18,7 +19,7 @@
     text-decoration: none;
     font-size:20px;
     display:inline;
-    /*background-color: grey; */
+    background-color:white;
     vertical-align: top;
     /* border-bottom: 1px solid black; */
 }
@@ -40,13 +41,14 @@
     text-align: center;
     margin: 100px 100px 100px 100px;
     padding: 50px;
-    background-color: grey;
+    background-color:steelblue;
     width: 700px;
     height: 500px;
+    position: relative;
 }
 
 .goal{
-    display:block;
+    display:inline-block;
     font-family: 'Poppins', sans-serif;
     text-align: left;
     font-size: 17px;
@@ -75,4 +77,14 @@
     padding: 50px 300px 50px 300px;
     color: white;
     font-weight: lighter;
+}
+
+.prompt{
+    border: 1px solid black;
+    text-align: center;
+    float:center;
+    padding: 20px;
+    margin: 0px 225px 0px 225px;
+    position: relative;
+    border-radius: 7.5px;
 }
