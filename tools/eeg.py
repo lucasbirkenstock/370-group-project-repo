@@ -41,12 +41,8 @@ def sensorFound(scanner, sensors):
         
         gl_scanner.stop()
 
-        #print(gl_sensor.commands)
-
         
-        #Call emotional information functions here
-        #on brainbit_emotion_received
-        #on stop, make call to attention level
+        #################### Pipeline stuff: may need to be moved elsewhere later. ####################
         thePipeline = make_pipeline_object()
         data = []
         data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
@@ -56,12 +52,24 @@ def sensorFound(scanner, sensors):
         mind_data = thePipeline.read_average_mental_data()
         mind_data_list = thePipeline.read_mental_data_arr()
 
+        # Average data
+        print("Mind Data: {} {} {} {}".format(mind_data.rel_attention,
+                                            mind_data.rel_relaxation,
+                                            mind_data.inst_attention,
+                                            mind_data.inst_relaxation))
+
+
+        # All vals: probably unnecessary.
         for i in range(thePipeline.read_mental_data_arr_size()):
              print("{}: {} {} {} {}".format(i,
                 mind_data_list[i].rel_attention,
                 mind_data_list[i].rel_relaxation,
                 mind_data_list[i].inst_attention,
                 mind_data_list[i].inst_relaxation))
+             
+        
+        
+        #################### Pipeline stuff: may need to be moved elsewhere later.  ####################
         
         
         del gl_scanner
