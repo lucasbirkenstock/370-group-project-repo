@@ -132,6 +132,9 @@ def make_pipeline_object() -> EmotionalMath:
     emotions.set_spect_normalization_by_bands_width(True)
 
     size = 1500
+    return emotions;
+
+
 
 
 
