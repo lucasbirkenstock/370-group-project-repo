@@ -13,8 +13,12 @@ from .lib_emotions_pipeline import make_pipeline_object
 def on_sensor_state_changed(sensor, state):
     logger.debug('Sensor {0} is {1}'.format(sensor.Name, state))
 
+my_data = []
 def on_brain_bit_signal_data_received(sensor, data):
+    global my_data
     logger.debug(data)
+    my_data.append(data)
+    print(my_data)
 
 logger.debug("Create Headband Scanner")
 gl_scanner = Scanner([SensorFamily.SensorLEBrainBit])
@@ -32,6 +36,8 @@ def sensorFound(scanner, sensors):
 
 
     for i in range(len(sensors)):
+
+        data = []
         logger.debug('Sensor %s' % sensors[i])
         logger.debug('Connecting to sensor')
         gl_sensor = gl_scanner.create_sensor(sensors[i])
@@ -39,16 +45,20 @@ def sensorFound(scanner, sensors):
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
         
+        print(gl_sensor.signalDataReceived)
+
         gl_scanner.stop()
 
         
         #################### Pipeline stuff: may need to be moved elsewhere later. ####################
         thePipeline = make_pipeline_object()
-        data = []
-        data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
-        thePipeline.push_data(data)
-        thePipeline.process_data_arr()
+        #data = []
+        #data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
+        #thePipeline.push_data(data)
+        #thePipeline.process_data_arr()
         
+        del gl_sensor
+        break
         mind_data = thePipeline.read_average_mental_data()
         mind_data_list = thePipeline.read_mental_data_arr()
 
