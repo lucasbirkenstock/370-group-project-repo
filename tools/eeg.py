@@ -16,11 +16,13 @@ def on_sensor_state_changed(sensor, state):
 # Variable to store brain data
 my_data = []
 
+# This function CONSTANTLY invokes when the headband is connected and the video is playing
 def on_brain_bit_signal_data_received(sensor, data):
     # Copy the information from 'data' to the global variable 'my_data'
     global my_data
-    logger.debug(data)
+    #logger.debug(data)
     my_data.append(data)
+    #print("test123")
     print(my_data)
 
 logger.debug("Create Headband Scanner")
@@ -48,10 +50,11 @@ def sensorFound(scanner, sensors):
         
         #################### Pipeline stuff: may need to be moved elsewhere later. ####################
         thePipeline = make_pipeline_object()
-        thePipeline.push_data(my_data)
-        thePipeline.process_data_arr()
+        # There is a problem with push_data: investigate later
+        # thePipeline.push_data(my_data)
+        # thePipeline.process_data_arr()
         
-        del gl_sensor
+        
         break
         mind_data = thePipeline.read_average_mental_data()
         mind_data_list = thePipeline.read_mental_data_arr()
