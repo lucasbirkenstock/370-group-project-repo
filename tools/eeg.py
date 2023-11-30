@@ -13,8 +13,11 @@ from .lib_emotions_pipeline import make_pipeline_object
 def on_sensor_state_changed(sensor, state):
     logger.debug('Sensor {0} is {1}'.format(sensor.Name, state))
 
+# Variable to store brain data
 my_data = []
+
 def on_brain_bit_signal_data_received(sensor, data):
+    # Copy the information from 'data' to the global variable 'my_data'
     global my_data
     logger.debug(data)
     my_data.append(data)
@@ -24,10 +27,6 @@ logger.debug("Create Headband Scanner")
 gl_scanner = Scanner([SensorFamily.SensorLEBrainBit])
 gl_sensor = None
 logger.debug("Sensor Found Callback")
-
-# Create emotionalmath object for calculating emotions from video
-# might remove this line later and replace with some sort of call to lib_emotions_pipeline
-
 
 def sensorFound(scanner, sensors):
     global gl_scanner
@@ -44,18 +43,13 @@ def sensorFound(scanner, sensors):
         gl_sensor.sensorStateChanged = on_sensor_state_changed
         gl_sensor.connect()
         gl_sensor.signalDataReceived = on_brain_bit_signal_data_received
-        
-        print(gl_sensor.signalDataReceived)
-
         gl_scanner.stop()
 
         
         #################### Pipeline stuff: may need to be moved elsewhere later. ####################
         thePipeline = make_pipeline_object()
-        #data = []
-        #data = on_brain_bit_signal_data_received # change to whatever sensor data is, todo 
-        #thePipeline.push_data(data)
-        #thePipeline.process_data_arr()
+        thePipeline.push_data(my_data)
+        thePipeline.process_data_arr()
         
         del gl_sensor
         break
@@ -92,6 +86,3 @@ gl_scanner.start()
 
 def get_head_band_sensor_object():
     return gl_sensor
-
-#print(gl_sensor.commands)
-
