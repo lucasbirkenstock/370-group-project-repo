@@ -32,3 +32,11 @@ def handle_connection(username, password):
     else:
         # Login fail: insert code for what to do when login fails
         print("Login failure")
+    
+    # Close the connections
+    theCursor.close()
+    connection.close()
+
+while True: 
+    client, address = theServer.accept()
+    threading.Thread(target=handle_connection, args=(client, )).start()
