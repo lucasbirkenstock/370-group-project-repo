@@ -1,52 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="https://code.jquery.com/jquery-3.6.0.js" 
-            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-            <link rel = "stylesheet" href="style.css" type="text/css">
-   </head>
-   <body>
-   <div class="navbar">
-       <div class="logo">
-           <a class="active" href='index.html'><img src="mindflow2.png" alt="logo" width='210px'
-               height='66px' float='left';></a>
-       </div>
-       <div class="navcontainer">
-           <a class="active" href='index.html'>Home</a>
-           <a href="about.html">About Us</a>
-           <a href="contact.html">Contact Information</a>
-           <a href="questions.html">Responses</a>
-           <div class="login">
-               <a href="login.html">Log in</a>
-           </div>
-       </div>
-   <br><br><br><br><br><br>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<div class="navbar">
+    <div class="logo">
+        <a class="active" href='index.html'><img src="mindflow2.png" alt="logo" width='210px' height='66px' float='left';></a>
+    </div>
+    <div class="navcontainer">
+        <a class="active" href='index.html'>Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Information</a>
+        <a href="questions.html">Responses</a>
+        <div class="login">
+            <a href="login.html">Log in</a>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
 
-   <div class ='prompt'>
-    <form action="/action_page.php" method="get" form="login">
-        <label for="user">Username:</label>
-        <input type="text"><br/><br/>
-        <label for="password">Password:</label>
-        <input type="password" id="input"><br/><br/>
-	<input type="checkbox" onclick="showpass()">Show Password <br/><br/>
-	<button type="submit" form="login" value="Submit">Log in</button>
-    <button type="submit" form="Signup" value="Submit">Sign Up</button>
-	<!-- <button onclick="document.getElementById('id1').style.display='block'" style= -->
-
-
-    </form>
-   </div>
+    <div class ='prompt'>
+        <!-- Update the form action and method to match the Flask route -->
+        <form action="/login" method="post" id="login">
+            <label for="username">Username:</label>
+            <!-- Add the name attribute to the input field -->
+            <input type="text" name="username"><br/><br/>
+            
+            <label for="password">Password:</label>
+            <!-- Add the id attribute to the input field -->
+            <input type="password" name="password" id="input"><br/><br/>
+            
+            <input type="checkbox" onclick="showpass()">Show Password <br/><br/>
+            <!-- Change the button type to submit the form -->
+            <button type="submit" form="login" value="Submit">Log in</button>
+            
+            <!-- Add a signup form with appropriate fields and action -->
+            <form action="/signup" method="post" id="signup">
+                <!-- Add signup form fields as needed -->
+                <!-- <label for="signup_username">Username:</label>
+                <input type="text" name="signup_username"><br/><br/>
+                <label for="signup_password">Password:</label>
+                <input type="password" name="signup_password"><br/><br/> -->
+                <button type="submit" form="signup" value="Submit">Sign Up</button>
+            </form>
+        </form>
+    </div>
 </body>
 <script>
-	function showpass(){
-		var x=document.getElementById("input");
-		if(x.type === "password")
-			x.type="text";
-		else
-			x.type="password";
-    };
+    function showpass() {
+        var x = document.getElementById("input");
+        if (x.type === "password")
+            x.type = "text";
+        else
+            x.type = "password";
+    }
 </script>
 </html>

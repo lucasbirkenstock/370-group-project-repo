@@ -9,20 +9,23 @@ import threading
 theServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the server to localhost
-theServer.bind(("localhost", 9998))
+theServer.bind(("localhost", 8997))
 
 theServer.listen()
 
 # Login attempt function
-# c = client
-def handle_connection(c):
-    
-    c.send("Username: ".encode())
-    username = c.recv(1024).decode()
-    c.send("Password: ".encode())
-    password = c.recv(1024)
+def handle_connection(client):
+    # Receive username from the client
+    username = client.recv(1024).decode()
+
+    # Send prompt for password
+    client.send("Password: ".encode())
+
+    # Receive password from the client
+    password = client.recv(1024).decode()
+
     # Hash the password before comparing to db
-    password = hashlib.sha256(password).hexdigest()
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
     # Connect to the db
     connection = sqlite3.connect("usercredentials.db")
@@ -31,15 +34,18 @@ def handle_connection(c):
     theCursor = connection.cursor()
 
     # Select any row where the username and password match the function inputs
-    theCursor.execute("SELECT * FROM usercredentials WHERE username = ? AND password = ?", (username, password))
+    theCursor.execute("SELECT * FROM usercredentials WHERE username = ? AND password = ?", (username, hashed_password))
 
+    print("test")
     # If the above query returns anything, that means correct credentials
-    if (theCursor.fetchall()):
+    if theCursor.fetchall():
         # Login successful: insert code for what to do when login is successful
         print("Login success")
+        client.send("Login success".encode())
     else:
         # Login fail: insert code for what to do when login fails
         print("Login failure")
+        client.send("Login failure".encode())
     
     # Close the connections
     theCursor.close()
@@ -47,5 +53,4 @@ def handle_connection(c):
 
 while True: 
     client, address = theServer.accept()
-    threading.Thread(target=handle_connection, args=(client, )).start()
-    
+    threading.Thread(target=handle_connection, args=(client,)).start()

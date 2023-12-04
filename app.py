@@ -6,6 +6,7 @@ import sys
 import datetime
 #import bcrypt
 import traceback
+import socket 
 
 from tools.eeg import get_head_band_sensor_object
 
@@ -71,6 +72,24 @@ def exec_secure_proc(proc_name):
     return resp
 
 
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect(('127.0.0.1', 81))
+
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        # Send username and password to the server
+        client.send(request.form['username'].encode())
+        client.recv(1024)  # Receive the password prompt
+        client.send(request.form['password'].encode())
+
+        # Receive and return the result from the server
+        result = client.recv(1024).decode()
+        return result
+
+    except Exception as e:
+        return f"Error: {e}"
 
 @app.route("/open_api/<proc_name>",methods=['GET', 'POST'])
 def exec_proc(proc_name):
