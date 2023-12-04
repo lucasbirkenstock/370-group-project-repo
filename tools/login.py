@@ -32,3 +32,4 @@ theCursor.execute("INSERT INTO usercredentials (username, password) VALUES (?, ?
 
 # Actually send/save the data
 connection.commit()
+
