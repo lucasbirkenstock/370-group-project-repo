@@ -1,7 +1,7 @@
 import socket
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(("localhost", 9998))
+client.connect(('localhost', 9998))
 
 def attemptLogin(username, password):
     # Send the username to the server
