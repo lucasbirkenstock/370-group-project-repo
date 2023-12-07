@@ -28,13 +28,16 @@
    <br><br><br><br><br><br>
 
    <div class ='prompt'>
-    <form action="/action_page.php" method="get" form="login">
+    <form action="/action_page.php" method="post" form="login">
         <label for="email">Email:</label>
         <input type="text" placeholder="Enter Email"><br/><br/>
         <label for="password">Password:</label>
         <input type="password" id="input" placeholder="Enter Password"><br/><br/>
-	<input type="checkbox" onclick="showpass()" style="font-size:14px;">Show Password <br/><br/>
-	<button type="submit" form="login" value="Submit">Log in</button>
+        <label for="fname">First name:</label>
+        <input type="text" for="fname" id="fname" placeholder="Enter First name"></label><br/><br/>
+        <label for="lname">Last name:</label>
+        <input type="text" for="lname" id="lname" placeholder="Enter Last name"></label><br/><br/>
+	<input type="checkbox" onclick="showpass()">Show Password <br/><br/>
     <a href="Signup.html"><button type="submit" form="login" value="Submit">Sign Up</button></a>
 	<!-- <button onclick="document.getElementById('id1').style.display='block'" style= -->
 
