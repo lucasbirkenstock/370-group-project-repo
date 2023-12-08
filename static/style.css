@@ -88,11 +88,11 @@
 }
 
 .prompt{
-    border: 1px solid black;
+    border: 2px solid black;
     text-align: center;
     float:center;
     padding: 20px;
-    margin: 0px 225px 0px 225px;
+    margin: 0px 1050px 0px 1050px;
     position: relative;
     border-radius: 7.5px;
     font-size: 20px;
@@ -102,3 +102,62 @@ body{
     background-image: radial-gradient(circle, white, orange);
     margin:0px;
 }
+
+.settings-container {
+    background-color: white;
+    width: 30%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settings-title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #333;
+    margin-bottom: 0px;
+}
+
+.setting {
+    margin: 10px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.setting label {
+    margin-right: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+.setting select {
+    padding: 5px;
+    border-radius: 5px;
+    width: 20%;
+}
+
+.settingButtons {
+    margin: 10px 0;
+	width: 50%
+    font-family: 'Poppins', sans-serif;
+	text-align: center;
+}
+
+.save-button, .sign-out-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+	width: 20%;
+	text-align: center;
+}
+
+.save-button:hover, .sign-out-button:hover {
+    background-color: #45a049;
+	width: 20%;
+	text-align: center;
+}
+
