@@ -13,6 +13,23 @@ theServer.bind(("localhost", 8997))
 
 theServer.listen()
 
+# For Bryan: add user credentials to sql database 
+def add_user_to_db(username, password):
+    # Connect to the database
+    connection = sqlite3.connect("usercredentials.db")
+
+    # Cursor for interacting with the database
+    theCursor = connection.cursor()
+
+    # hash the password prior to adding
+    password = hashlib.sha256(password.encode()).hexdigest()
+
+    # Insert into DB
+    theCursor.execute("INSERT INTO usercredentials (username, password) VALUES (?, ?)", (username, password))
+
+    # Save changes
+    connection.commit()
+
 # Login attempt function
 def handle_connection(client):
     # Receive username from the client
