@@ -76,15 +76,24 @@
   font-weight: lighter;
 }
 
-/* Path: static/style.css */
+/* */
 .thumbnail-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: start;
   align-items: center;
 }
 
 .thumbnail {
-  width: 100px; /* Adjust the width as needed */
-  height: auto; /* This maintains the aspect ratio */
-  margin-right: 10px; /* Space between thumbnails */
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border: 1.5rem solid black;
 }

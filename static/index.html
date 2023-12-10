@@ -101,6 +101,7 @@
                 const container = document.getElementById('image-container');
                 data.forEach(img => {
 					const imgContainer = document.createElement('div');
+					imgContainer.className = "imgContainer";
                     const imgElement = document.createElement('img');
                     imgElement.src = img;
                     imgElement.classList.add('thumbnail');
@@ -129,10 +130,23 @@
                 });
             });
         };
+
+		
     </script>
 	<div id="image-container" class="thumbnail-row">
         <!-- Thumbnails will be added here -->
     </div>
+	<button id="toggleButton">Toggle Thumbnails</button>
+	<script>
+		document.getElementById('toggleButton').addEventListener('click', function() {
+        	var thumbnailRow = document.getElementById('image-container');
+        	if (thumbnailRow.style.display === 'none') {
+            	thumbnailRow.style.display = 'flex'; // or your original display type
+        	} else {
+            	thumbnailRow.style.display = 'none';
+        	}
+    });
+	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 	<script src="websocket.js"></script>
     </body>
