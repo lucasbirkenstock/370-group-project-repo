@@ -1,78 +1,90 @@
-
-.navbar{
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    overflow:hidden;
-    background-color: white;
+.navbar {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  overflow: hidden;
+  background-color: white;
 }
 
-.logo{
-    float:left;
+.logo {
+  float: left;
 }
 
-.navcontainer a{
-    float: left;
-    color:black;
-    text-align: center;
-    padding:14px 20px;
-    text-decoration: none;
-    font-size:20px;
-    display:inline;
-    /*background-color: grey; */
-    vertical-align: top;
-    /* border-bottom: 1px solid black; */
+.navcontainer a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  display: inline;
+  /*background-color: grey; */
+  vertical-align: top;
+  /* border-bottom: 1px solid black; */
 }
 
-.navcontainer a:hover{
-    background-color:gainsboro;
+.navcontainer a:hover {
+  background-color: gainsboro;
 }
 
-.login{
-    /* background-color: orange; */
-    display:inline;
-    float:right;
-    font-size:15px;
-    border:none;
+.login {
+  /* background-color: orange; */
+  display: inline;
+  float: right;
+  font-size: 15px;
+  border: none;
 }
 
-.vid{
-    display:block;
-    text-align: center;
-    margin: 100px 100px 100px 100px;
-    padding: 50px;
-    background-color: grey;
-    width: 700px;
-    height: 500px;
+.vid {
+  display: block;
+  text-align: center;
+  margin: 100px 100px 100px 100px;
+  padding: 50px;
+  background-color: grey;
+  width: 700px;
+  height: 500px;
 }
 
-.goal{
-    display:block;
-    font-family: 'Poppins', sans-serif;
-    text-align: left;
-    font-size: 17px;
-    /*border: 1px groove grey;*/
-    margin:20px;
-    padding: 50px 300px 50px 300px;
+.goal {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  font-size: 17px;
+  /*border: 1px groove grey;*/
+  margin: 20px;
+  padding: 50px 300px 50px 300px;
 }
 
-.goal p{
-    color:darkgray;
+.goal p {
+  color: darkgray;
 }
-.goal img{
-    float:right;
-    margin-left: 10px;
-    height:276.5px; 
-    width:500px;
+.goal img {
+  float: right;
+  margin-left: 10px;
+  height: 276.5px;
+  width: 500px;
 }
-.info p{
-    background-color:darkgray;
-    display:block;
-    font-family: 'Poppins', sans-serif;
-    text-align: left;
-    font-size: 17px;
-    border: 1px darkgray;
-    margin:auto;
-    padding: 50px 300px 50px 300px;
-    color: white;
-    font-weight: lighter;
+.info p {
+  background-color: darkgray;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  font-size: 17px;
+  border: 1px darkgray;
+  margin: auto;
+  padding: 50px 300px 50px 300px;
+  color: white;
+  font-weight: lighter;
+}
+
+/* Path: static/style.css */
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.thumbnail {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* This maintains the aspect ratio */
+  margin-right: 10px; /* Space between thumbnails */
 }

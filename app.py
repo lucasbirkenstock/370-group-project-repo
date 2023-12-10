@@ -122,6 +122,18 @@ def handle_new_video(data):
     video_name = data['name']
     changeVideo(video_name)
 
+@app.route('/images')
+def images():
+    videoNames = video_manager.getVideoNames()  # Replace with actual image paths
+    thumbnailPaths = []
+    for imageName in videoNames:
+        imageName += ".png"
+        imageName = "thumbnails/" + imageName
+        thumbnailPaths.append(imageName)
+    for name in thumbnailPaths:
+        print(name)
+    return jsonify(thumbnailPaths)
+
 if __name__ == '__main__':
     socketio.run(app,host='0.0.0.0', port=80)
     video_manager.setDirectory('static')

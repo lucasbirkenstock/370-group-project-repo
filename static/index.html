@@ -66,7 +66,15 @@
 	<script>
         // Function to fetch list from server and update the UL
         function populateList() {
-            fetch('/get-videos-list')  // Update with your server URL
+            }
+
+        // Call the function on page load
+        window.onload = populateList;
+    </script>
+
+	<script>
+        window.onload = function() {
+			fetch('/get-videos-list')  // Update with your server URL
                 .then(response => response.json())
                 .then(data => {
                     const ul = document.getElementById('videos-list');
@@ -87,11 +95,44 @@
                     });
                 })
                 .catch(error => console.error('Error:', error));
-        }
+        
 
-        // Call the function on page load
-        window.onload = populateList;
+            fetch('/images').then(response => response.json()).then(data => {
+                const container = document.getElementById('image-container');
+                data.forEach(img => {
+					const imgContainer = document.createElement('div');
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.classList.add('thumbnail');
+					tokens = img.split('/');
+					name = tokens.pop()
+					name = name.replace('.png', '');
+					imgElement.id = img;
+					const p = document.createElement('p');
+					p.textContent = name;
+					imgContainer.appendChild(imgElement);
+					imgContainer.appendChild(p);
+					//imgElement.onclick = changeVideo(name);
+                    
+
+					//imgContainer.addEventListener('click', changeVideo(name));
+					function createClickListener(name) {
+                    	return function(event) {
+                        	let videoPlayer = document.getElementById("video");
+  							videoPlayer.src = "videos/" + name + ".mp4";
+  							videoPlayer.load();
+  							videoPlayer.play();
+                    	};
+                	}
+					imgContainer.addEventListener('click', createClickListener(name));
+					container.appendChild(imgContainer);
+                });
+            });
+        };
     </script>
+	<div id="image-container" class="thumbnail-row">
+        <!-- Thumbnails will be added here -->
+    </div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 	<script src="websocket.js"></script>
     </body>
