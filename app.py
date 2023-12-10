@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, redirect, url_for, g, session
+from flask import Flask,render_template,request, redirect, url_for, g, jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 #import jwt
 
@@ -11,6 +11,7 @@ import traceback
 
 
 from db_con import get_db_instance, get_db
+import video_manager
 
 #from tools.token_required import token_required
 
@@ -39,8 +40,9 @@ socketio = SocketIO(app, manage_session=False)
 def handle_message():
     print('***\nWebsocket connected on servers end \n***')
  #Call This function and pass in the new video path, when it is time to change the clients video.   
-def changeVideo(videoPath,sessionID):
-        socketio.emit('change_video',videoPath,room=sessionID)
+def changeVideo(videoPath):
+        print(videoPath)
+        socketio.emit('change_video',videoPath)
 
 @socketio.on('client-connection-ack')
 def handle_message():
@@ -107,7 +109,20 @@ def exec_proc(proc_name):
 
     return resp
 
+@app.route('/get-videos-list')
+def get_list():
+    #items = ["Item 1", "Item 2", "Item 3"]  # Replace with your dynamic data
+    items = video_manager.getVideoNames()
+    print(items)
+    return jsonify(items)
+
+@socketio.on('new_video')
+def handle_new_video(data):
+    print(data)
+    video_name = data['name']
+    changeVideo(video_name)
 
 if __name__ == '__main__':
     socketio.run(app,host='0.0.0.0', port=80)
+    video_manager.setDirectory('static')
 

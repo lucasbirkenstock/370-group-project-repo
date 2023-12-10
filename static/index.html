@@ -44,12 +44,15 @@
 
 	<div class="vid">
 		<video id="video" width="640" height="480" controls>
-			<source src="movie.mp4" type="video/mp4">
+			<source src="videos/movie.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 		</video>
 	</div>
-	<button id="changeVideoButton">Change Video</button>
-
+	<div class="content-container">
+		<ul class="videos-list" id="videos-list">
+			<li>This is one link</li>
+		</ul>
+	</div>
 	<script>
 		/*
 		video.addEventListener("play", (event) => {
@@ -60,6 +63,35 @@
 		// 	play_stop();
 		// });
 	</script>
+	<script>
+        // Function to fetch list from server and update the UL
+        function populateList() {
+            fetch('/get-videos-list')  // Update with your server URL
+                .then(response => response.json())
+                .then(data => {
+                    const ul = document.getElementById('videos-list');
+					console.log(data);
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+						const a = document.createElement('a');
+                    	a.textContent = item; // Assuming each video has a 'name' property
+                    	a.href = "#";
+						a.addEventListener('click', (event) => {
+                        	event.preventDefault(); // Prevent the default link behavior
+                        	 // Call the function to change the video
+							//socket.emit('new_video', {name: item})
+							changeVideo(item);
+						});
+						li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function on page load
+        window.onload = populateList;
+    </script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 	<script src="websocket.js"></script>
     </body>

@@ -6,17 +6,14 @@ socket.on("connect", function () {
 
 socket.on("change_video", function (newVideoPath) {
   let videoPlayer = document.getElementById("video");
-  videoPlayer.src = newVideoPath;
+  console.log(newVideoPath);
+  console.log(videoPlayer.src);
+  changeVideo(newVideoPath);
+});
+
+function changeVideo(newVideoPath) {
+  let videoPlayer = document.getElementById("video");
+  videoPlayer.src = "videos/" + newVideoPath + ".mp4";
   videoPlayer.load();
   videoPlayer.play();
-});
-
-document
-  .getElementById("changeVideoButton")
-  .addEventListener("click", function () {
-    socket.emit("change_video");
-  });
-
-video.addEventListener("play", (event) => {
-  socket.emit("start_headband");
-});
+}
