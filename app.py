@@ -134,6 +134,10 @@ def images():
         print(name)
     return jsonify(thumbnailPaths)
 
+@app.before_first_request
+def before_first_request():
+    video_manager.update_thumbnails()
+
 if __name__ == '__main__':
     socketio.run(app,host='0.0.0.0', port=80)
     video_manager.setDirectory('static')
