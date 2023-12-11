@@ -161,3 +161,23 @@ body{
 	text-align: center;
 }
 
+
+.thumbnail-row {
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.thumbnail {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border: 1.5rem solid black;
+}

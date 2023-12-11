@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, redirect, url_for, g
+from flask import Flask,render_template,request, redirect, url_for, g, jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 #import jwt
 
@@ -7,7 +7,7 @@ import datetime
 #import bcrypt
 import traceback
 
-from tools.eeg import get_head_band_sensor_object
+#from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -28,6 +28,12 @@ ERROR_MSG = "Ooops.. Didn't work!"
 app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
+
+from tools.logging import logger
+from flask_socketio import SocketIO
+import video_manager
+
+socketio = SocketIO(app, manage_session=False)
 
 #g is flask for a global var storage 
 def init_new_env():
@@ -93,6 +99,64 @@ def exec_proc(proc_name):
 
     return resp
 
+
+@socketio.on('connect')
+def handle_message():
+    print('***\nWebsocket connected on servers end \n***')
+ #Call This function and pass in the new video path, when it is time to change the clients video.   
+def changeVideo(videoPath):
+        print(videoPath)
+        socketio.emit('change_video',videoPath)
+
+@socketio.on('client-connection-ack')
+def handle_message():
+    print("***\nserver has been notified that websocket is connected on clients end\n***")
+
+@app.route('/get-videos-list')
+def get_list():
+    items = video_manager.getVideoNames()
+    print(items)
+    return jsonify(items)
+
+@app.route('/get-all-video-paths')
+def get_both_list():
+    items = video_manager.getAllVideoPaths()
+    print(items)
+    return jsonify(items)
+@app.route('/get-fun-videos-list')
+def get_fun_list():
+    items = video_manager.getFunVideoNames()
+    print(items)
+    return jsonify(items)
+
+@app.route('/get-educational-videos-list')
+def get_edu_list():
+    items = video_manager.getEducationalVideoNames()
+    print(items)
+    return jsonify(items)
+
+@socketio.on('new_video')
+def handle_new_video(data):
+    print(data)
+    video_name = data['name']
+    changeVideo(video_name)
+
+@app.route('/images')
+def images():
+    videoNames = video_manager.getEducationalVideoNames()  # Replace with actual image paths
+    thumbnailPaths = []
+    for imageName in videoNames:
+        imageName += ".png"
+        imageName = "thumbnails/" + imageName
+        thumbnailPaths.append(imageName)
+    for name in thumbnailPaths:
+        print(name)
+    return jsonify(thumbnailPaths)
+
+@app.before_first_request
+def before_first_request():
+    print("before first request")
+    video_manager.update_thumbnails()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

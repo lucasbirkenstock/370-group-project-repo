@@ -1,179 +1,119 @@
 <!DOCTYPE html>
 <html>
-    <head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<style>
-			.fa {
-				font-size: 50px;
-				cursor: pointer;
-				user-select: none;
-			  	position: fixed;
-			  	bottom: 45px;
-			  	left: 50%;
-			  	transform: translateX(-50%);
-			}
-		
-			.fa:hover {
-			  	color: rgb(173, 101, 0);
-			}
-		
-			/* Center style with margin-top adjustment */
-			.center {
-			  	text-align: center;
-			  	margin-top: -1in; /* Adjust the margin-top to shift the video down (positive value moves it down) */
-			}		
-		</style>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .fa {
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
+        position: fixed;
+        bottom: 45px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-		<script src="https://code.jquery.com/jquery-3.6.0.js" 
-		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-			 <link rel="preconnect" href="https://fonts.googleapis.com">
-			 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-			 <link rel = "stylesheet" href="style.css" type="text/css">
-	</head>
-    <body>
-	<div class="navbar">
-		<div class="logo">
-			<a class="active" href='index.html'><img src="mindflow.png" alt="logo" width='210px'
-				height='66px' float='left';></a>
-		</div>
-		<div class="navcontainer">
-			<!-- <a class="active" href='index.html'>Home</a> -->
-			<a href="login.html">Profile</a>
-			<a href="Settings.html">Settings</a>
-			<a href="Safety.html">Safety</a>
-		</div>
-		<div class="login">
-			<a href= "bluetooth.html" style="background-color:unset"><img src="bluetooth-vector-icon.png" alt="bluetooth" width="60";
-				height="60";></a>
-		</div>
-	</div>
+      .fa:hover {
+        color: rgb(173, 101, 0);
+      }
 
-	<!-- JavaScript function to toggle the icon -->
-	<script>
-		function toggleThumbs(x) {
-			x.classList.toggle("fa-thumbs-down");
-		}
-	</script>
-	<br><br><br><br><br><br>
-	<script>
-		function play_start() {
-			$.post("/open_api/play_movie", { "data":"somedata", "any":"data"},
-				function(data, textStatus) {
-					//this gets called when browser receives response from server
-					console.log(data);
-				}, "json").fail( function(response) {
-					//this gets called if the server throws an error
-					console.log("error");
-				console.log(response);});
-		}
-		// function play_stop(){
-		// 	$.post("/open_api/play_movie", { "data":"somedata", "any":"data"},
+      /* Center style with margin-top adjustment */
+      .center {
+        text-align: center;
+        margin-top: -1in; /* Adjust the margin-top to shift the video down (positive value moves it down) */
+      }
+    </style>
 
-		// }
-	</script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <a class="active" href="index.html"
+          ><img
+            src="mindflow.png"
+            alt="logo"
+            width="210px"
+            height="66px"
+            float="left"
+            ;
+        /></a>
+      </div>
+      <div class="navcontainer">
+        <!-- <a class="active" href='index.html'>Home</a> -->
+        <a href="login.html">Profile</a>
+        <a href="Settings.html">Settings</a>
+        <a href="Safety.html">Safety</a>
+      </div>
+      <div class="login">
+        <a href="bluetooth.html" style="background-color: unset"
+          ><img
+            src="bluetooth-vector-icon.png"
+            alt="bluetooth"
+            width="60"
+            ;
+            height="60"
+            ;
+        /></a>
+      </div>
+    </div>
 
-	<!-- Video Section with center style, margin-top adjustment, and 16:9 aspect ratio -->
-	<div class="center">
-		<video id="video" width="640" height="360" controls>
-			<source src="eng_vid1.mp4" type="video/mp4">
-      		Your browser does not support the video tag.
-    	</video>	
-	</div>
+    <!-- JavaScript function to toggle the icon -->
+    <script></script>
+    <br /><br /><br /><br /><br /><br />
+    <script>
+      function play_start() {
+        $.post(
+          "/open_api/play_movie",
+          { data: "somedata", any: "data" },
+          function (data, textStatus) {
+            //this gets called when browser receives response from server
+            console.log(data);
+          },
+          "json"
+        ).fail(function (response) {
+          //this gets called if the server throws an error
+          console.log("error");
+          console.log(response);
+        });
+      }
+    </script>
 
-	<!-- Thumbs-up/thumbs-down icon -->
-	<i onclick="toggleThumbs(this)" class="fa fa-thumbs-up"></i>
+    <!-- Video Section with center style, margin-top adjustment, and 16:9 aspect ratio -->
+    <div class="center">
+      <video id="video" width="640" height="360" controls>
+        <source src="videos/edu/eng_vid1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-	<script>
-		// Function to shuffle an array
-		function shuffleArray(array) {
-			for (var i = array.length - 1; i > 0; i--) {
-				var j = Math.floor(Math.random() * (i + 1));
-				[array[i], array[j]] = [array[j], array[i]];
-			}
-		}
-		
-		// Array of video sources
-		var engVideoSources = ["eng_vid1.mp4", "eng_vid2.mp4", "eng_vid3.mp4", "eng_vid4.mp4", "eng_vid5.mp4"];
+    <button id="toggleButton">Mode</button>
+    <div id="image-container" class="thumbnail-row" style="display: none"></div>
 
-		// Array of video sources for thumbs-down
-		var disVideoSources = ["dis_vid1.mp4", "dis_vid2.mp4", "dis_vid3.mp4", "dis_vid4.mp4", "dis_vid5.mp4"];
+    <!-- Thumbs-up/thumbs-down icon -->
+    <i onclick="toggleThumbs(this)" class="fa fa-thumbs-up" id="thumb"></i>
 
-		// Shuffle both video source arrays
-		shuffleArray(engVideoSources);
-     	shuffleArray(disVideoSources);
-
-		// Set the first video source to the video element
-		document.getElementById("video").src = engVideoSources[0];
-
-		// Variable to track the current video sources
-		var currentVideoSources = engVideoSources;
-
-		// Variable to track if thumbs-down was clicked
-		var thumbsDownClicked = false;
-
-		// Thumbs-up/thumbs-down icon toggle function
-		function toggleThumbs(x) {
-  			var videoElement = document.getElementById("video");
-
-  			// If currently thumbs-up, switch to thumbs-down
- 			if (x.classList.contains("fa-thumbs-up")) {
-    			currentVideoSources = disVideoSources;
-   				thumbsDownClicked = true; // Mark that thumbs-down was clicked
-  			} else if (x.classList.contains("fa-thumbs-down")) {
-    		// If currently thumbs-down, switch to thumbs-up
-    			currentVideoSources = engVideoSources;
-    			thumbsDownClicked = false; // Reset the flag when thumbs-up is clicked
-  			}
-
-  			// Rotate the video sources array
-  			currentVideoSources.push(currentVideoSources.shift());
-
-  			// Set the new video source to the video element
-  			videoElement.src = currentVideoSources[0];
-
-  			// Toggle the class
-  			x.classList.toggle("fa-thumbs-up");
-  			x.classList.toggle("fa-thumbs-down");
-
-  			// Play the new video
-  			videoElement.play();
-			}
-
-  			// Function to play the next video when the current one ends
-  			function play_next() {
-  			var videoElement = document.getElementById("video");
-  			var thumbsIcon = document.querySelector(".fa");
-
-  			// If thumbs-down was clicked, switch back to eng_vids
-  			if (thumbsDownClicked) {
-    			thumbsDownClicked = false; // Reset the flag
-    			currentVideoSources = engVideoSources;
-    
-    		// Toggle the class to switch from thumbs-down to thumbs-up
-    			thumbsIcon.classList.toggle("fa-thumbs-up");
-    			thumbsIcon.classList.toggle("fa-thumbs-down");
-  			}
-
-  			// Rotate the video sources array
-  			currentVideoSources.push(currentVideoSources.shift());
-
-  			// Set the new video source to the video element
-  			videoElement.src = currentVideoSources[0];
-
-  			// Play the new video
-  			videoElement.play();
-			}
-
-			// Event listener for the "ended" event of the video
-			document.getElementById("video").addEventListener("ended", play_next);
-
-			video.addEventListener("play", (event) => {
-				play_start();
-			});
-		// video.addEventListener("stop", (event) =>{
-		// 	play_stop();
-		// });
-	</script>
-    </body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="websocket.js"></script>
+    <script src="thumb_handler.js"></script>
+    <script src="videos_display.js"></script>
+  </body>
 </html>
