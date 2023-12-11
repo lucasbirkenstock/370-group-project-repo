@@ -38,7 +38,7 @@ document.getElementById("toggleButton").addEventListener("click", function () {
   var thumbnailRow = document.getElementById("image-container");
   var thumb = document.getElementById("thumb");
   if (thumbnailRow.style.display === "none") {
-    thumbnailRow.style.display = "flex"; // or your original display type
+    thumbnailRow.style.display = "flex";
     thumb.style.display = "none";
   } else {
     thumbnailRow.style.display = "none";

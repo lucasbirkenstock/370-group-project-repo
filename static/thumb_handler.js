@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function fetchVideos() {
-  fetch("/get-all-video-paths") // Replace with the endpoint for English videos
+  fetch("/get-all-video-paths")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok for English videos");
@@ -37,7 +37,6 @@ function fetchVideos() {
       currentVideoSources = engVideoSources;
 
       document.getElementById("video").src = engVideoSources[0];
-      // Optionally call a function here to process engVideoSources
     })
     .catch((error) => {
       console.error("Problem with fetch operation for English videos:", error);
