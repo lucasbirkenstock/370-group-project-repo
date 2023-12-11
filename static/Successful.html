@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" 
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+            <link rel = "stylesheet" href="style.css" type="text/css">
+   </head>
+   <body>
+	<div class="navbar">
+		<div class="logo">
+			<a class="active" href='index.html'><img src="mindflow.png" alt="logo" width='210px'
+				height='66px' float='left';></a>
+		</div>
+		<div class="navcontainer">
+			<!-- <a class="active" href='index.html'>Home</a> -->
+			<a href="login.html">Profile</a>
+			<a href="Settings.html">Settings</a>
+			<a href="Safety.html">Safety</a>
+		</div>
+		<div class="login">
+			<a href= "#bluetooth" style="background-color:unset"><img src="bluetooth-vector-icon.png" alt="bluetooth" width="60";
+				 height="60";></a>
+		</div>
+    </div>
+   <br><br><br><br><br><br>
+
+   <div class ='prompt'>
+   <b>Login Successful</b><br>
+   <a href="index.html"> Click to go back to Homepage</a>
+   </div>
+</body>
+<script>
+	function showpass(){
+		var x=document.getElementById("input");
+		if(x.type === "password")
+			x.type="text";
+		else
+			x.type="password";
+    };
+</script>
+</html>

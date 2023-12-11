@@ -1,0 +1,104 @@
+
+.navbar{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    overflow:hidden;
+    /* background-color: white; */
+    background-image: linear-gradient(black 60%, transparent);
+    padding-top:20px;
+    padding-bottom: 30px;
+}
+
+.logo{
+    float:left;
+    /* background-color:grey; */
+}
+
+.navcontainer a{
+    float: left;
+    color:white;
+    text-align: center;
+    padding:14px 20px;
+    text-decoration: none;
+    font-size:24px;
+    display:inline;
+    /* background-color:black; */
+    background-image: linear-gradient(lightgrey,grey,dimgrey, #1a1a1a);
+    vertical-align: top;
+    text-decoration: underline;
+    margin:10px;
+    /* border-bottom: 1px solid black; */
+}
+
+.navcontainer a:hover{
+    background-color:gainsboro;
+}
+
+.login{
+    /* background-color: orange; */
+    display:inline;
+    float:right;
+    font-size:15px;
+    border:none;
+}
+
+.vid{
+    display:block;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 50px;
+    /* background-color:steelblue; */
+    /* background-image: radial-gradient(circle, white, orange); */
+    width: 700px;
+    height: 500px;
+    position: relative;
+    /* border: 1px solid black; */
+}
+
+.goal{
+    display:inline-block;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    font-size: 17px;
+    /*border: 1px groove grey;*/
+    margin:20px;
+    padding: 50px 300px 50px 300px;
+}
+
+.goal p{
+    color:darkgray;
+}
+.goal img{
+    float:right;
+    margin-left: 10px;
+    height:276.5px; 
+    width:500px;
+}
+.info p{
+    background-color:darkgray;
+    display:block;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    font-size: 17px;
+    border: 1px darkgray;
+    margin:auto;
+    padding: 50px 300px 50px 300px;
+    color: white;
+    font-weight: lighter;
+}
+
+.prompt{
+    border: 1px solid black;
+    text-align: center;
+    float:center;
+    padding: 20px;
+    margin: 0px 225px 0px 225px;
+    position: relative;
+    border-radius: 7.5px;
+    font-size: 20px;
+}
+
+body{
+    background-image: radial-gradient(circle, white, orange);
+    margin:0px;
+}
